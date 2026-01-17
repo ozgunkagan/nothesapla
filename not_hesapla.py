@@ -1,10 +1,14 @@
 import streamlit as st
+st.set_page_config(
+    page_title="Not Hesaplayıcı",
+    page_icon="🎓",
+    layout="centered"
+)
 
-# Sitenin Başlığı
+
 st.title("🎓 Üniversite Not Hesaplama Aracı")
 st.write("Ders notlarını aşağıya gir, geçip geçmediğini hemen öğren!")
 
-# Ekranı iki sütuna bölelim (daha şık dursun diye)
 col1, col2 = st.columns(2)
 
 with col1:
@@ -19,10 +23,10 @@ with col2:
     Midterm = st.number_input("Midterm (0-100)", min_value=0.0, max_value=100.0)
     Final = st.number_input("Final (0-100)", min_value=0.0, max_value=100.0)
 
-# Hesaplama Butonu
+
 if st.button("Sonucumu Hesapla"):
     
-    # Senin hesaplama kodların aynen burada:
+  
     not_participation = participation * 0.1
     not_Presentation = Presentation * 0.025
     not_Impromptu_Speech = Impromptu_Speech * 0.025
@@ -35,9 +39,9 @@ if st.button("Sonucumu Hesapla"):
     toplam_not = (not_participation + not_Presentation + not_Impromptu_Speech + 
                   not_RD + not_MC + not_Book + not_Midterm + not_Final)
 
-    st.divider() # Araya çizgi çeker
+    st.divider() 
 
-    # Senin mantık kuralların (Düzeltilmiş haliyle):
+    
     if Final < 50:
         if toplam_not >= 60:
             st.error(f"🔴 KALDINIZ! Ortalamanız tutuyor ama Final barajına takıldınız. (Final: {Final})")
@@ -52,5 +56,6 @@ if st.button("Sonucumu Hesapla"):
 
     else:
         st.success(f"🟢 TEBRİKLER GEÇTİNİZ!")
-        st.balloons() # Ekranda balonlar uçuşur :)
+        st.balloons() 
+
         st.write(f"Genel Ortalamanız (GPA): {toplam_not:.2f}")
